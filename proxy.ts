@@ -4,7 +4,7 @@ import { verifySessionToken, SESSION_COOKIE } from '@/lib/auth';
 
 const PROTECTED_PATHS = ['/laporan-analisis', '/monitoring-lapangan'];
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
     const { pathname } = req.nextUrl;
 
     const isProtected = PROTECTED_PATHS.some((p) => pathname.startsWith(p));
