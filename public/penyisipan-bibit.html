@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Penyisipan Bibit - Pelaksanaan Rehabilitasi Mangrove</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--primary:#059669;
+--primary-dark:#047857;
+--border:#e5e7eb;
+--muted:#64748b;
+--white:#ffffff;
+--shadow:None;
+--shadow-hover:0 8px 30px rgba(0,0,0,0.1);
+--max-width:1000px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+font-family:'Plus Jakarta Sans',sans-serif;
+background:#f0fdf4;
+color:#0f172a;
+line-height:1.7;
+}
+
+/* HEADER */
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:16px 24px;
+background:#ffffff;
+box-shadow:var(--shadow);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:16px;
+}
+
+.logo{
+width:48px;
+height:48px;
+border-radius:10px;
+overflow:hidden;
+}
+
+.logo img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+
+.sitename{
+font-weight:800;
+font-size:1.5rem;
+color:var(--primary);
+}
+
+/* NAV */
+.burger-menu{
+cursor:pointer;
+background:none;
+border:none;
+}
+
+.burger-menu img{
+width:24px;
+}
+
+.nav{
+position:fixed;
+top:0;
+right:-100%;
+height:100vh;
+width:80%;
+max-width:300px;
+background:#ffffff;
+display:flex;
+flex-direction:column;
+padding:80px 24px 24px;
+transition:0.3s;
+box-shadow:var(--shadow);
+gap:8px;
+}
+
+.nav.active{ right:0; }
+
+.nav a{
+color:var(--muted);
+text-decoration:none;
+font-weight:600;
+padding:12px 18px;
+border-radius:20px;
+}
+
+.nav a:hover{
+background:var(--primary);
+color:#ffffff;
+}
+
+/* MAIN */
+main{
+max-width:var(--max-width);
+margin:0 auto;
+padding:60px 20px;
+}
+
+.card{
+background:#ffffff00;
+padding:50px 40px;
+border-radius:14px;
+box-shadow:var(--shadow);
+}
+
+.card h2{
+font-size:2rem;
+color:var(--primary);
+margin-bottom:25px;
+text-align:center;
+}
+
+.perencanaan-intro{
+color:var(--muted);
+margin-bottom:40px;
+text-align:center;
+}
+
+/* IMAGE */
+.image-container{
+display:flex;
+justify-content:center;
+margin-bottom:40px;
+}
+
+.image-item{
+width:100%;
+max-width:600px;
+background:#ffffff;
+border-radius:12px;
+box-shadow:var(--shadow);
+overflow:hidden;
+}
+
+.image-item img{
+width:100%;
+height:300px;
+object-fit:contain;
+background:#ffffff;
+}
+
+.image-source{
+text-align:center;
+font-size:0.85rem;
+padding:10px;
+background:#f1f5f9;
+color:var(--muted);
+}
+
+/* CONTENT BOX */
+.pola-tanam-content{
+margin-bottom:40px;
+}
+
+.pola-tanam-content p{
+margin-bottom:15px;
+}
+
+.criteria-list{
+margin:20px 0;
+padding:25px;
+background:#ffffff;
+border:1px solid rgba(0,0,0,0.05);
+border-radius:12px;
+box-shadow:0 4px 15px rgba(5, 150, 105, 0.1);
+position:relative;
+overflow:hidden;
+transition:all 0.3s ease;
+}
+
+.criteria-list:hover{
+transform:translateY(-5px);
+box-shadow:0 8px 25px rgba(5, 150, 105, 0.15);
+border-color:var(--primary);
+}
+
+.criteria-list::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:5px;
+height:100%;
+background:linear-gradient(180deg, var(--primary) 0%, #047857 100%);
+}
+
+.criteria-list li{
+margin-bottom:12px;
+padding:12px 15px;
+background:#f0fdf4;
+border-radius:8px;
+display:flex;
+align-items:center;
+transition:all 0.3s ease;
+}
+
+.criteria-list li:last-child{
+margin-bottom:0;
+}
+
+.criteria-list li::before{
+content:'✓';
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:24px;
+height:24px;
+background:var(--primary);
+color:#ffffff;
+border-radius:50%;
+margin-right:12px;
+font-size:14px;
+font-weight:bold;
+flex-shrink:0;
+}
+
+/* TUJUAN */
+.content-box{
+background:#ffffff;
+padding:30px;
+border-radius:12px;
+box-shadow:var(--shadow);
+margin-bottom:40px;
+}
+
+.content-box h4{
+color:var(--primary);
+margin-bottom:20px;
+text-align:center;
+font-size:1.3rem;
+}
+
+.tujuan-list{
+list-style-type: disc;
+padding:15px 15px 15px 40px;
+background:#ffffff;
+border:1px solid rgba(0,0,0,0.05);
+border-radius:8px;
+transition:all 0.3s ease;
+}
+
+.tujuan-list:hover{
+transform:translateY(-5px);
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+border-color:var(--primary);
+}
+
+.tujuan-list li{
+padding:8px 0;
+margin-bottom:0;
+transition:all 0.3s ease;
+cursor:pointer;
+}
+
+.tujuan-list li:hover{
+transform:translateX(10px);
+color:var(--primary);
+}
+
+
+
+/* KELEBIHAN & KEKURANGAN */
+.kk-container{
+background:var(--white);
+padding:30px;
+border-radius:12px;
+box-shadow:var(--shadow);
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:24px;
+}
+
+.kelebihan{
+background:#f0fdf4;
+padding:30px;
+border-radius:12px;
+position:relative;
+border:1px solid transparent;
+transition:all 0.3s ease;
+}
+
+.kelebihan:hover{
+transform:translateY(-10px);
+border-color:var(--primary);
+box-shadow:0 8px 25px rgba(5, 150, 105, 0.2);
+}
+
+.kekurangan{
+background:#fef2f2;
+padding:30px;
+border-radius:12px;
+position:relative;
+border:1px solid transparent;
+transition:all 0.3s ease;
+}
+
+.kekurangan:hover{
+transform:translateY(-10px);
+border-color:#dc2626;
+box-shadow:0 8px 25px rgba(220, 38, 38, 0.2);
+}
+
+.kelebihan h4{
+color:var(--primary);
+margin-bottom:20px;
+text-align:center;
+
+}
+
+.kekurangan h4{
+color:#dc2626;
+margin-bottom:20px;
+text-align:center;
+
+}
+
+.kelebihan ul,
+.kekurangan ul{
+list-style:none;
+padding:0;
+margin:0;
+}
+
+.kelebihan li,
+.kekurangan li{
+padding:8px 0;
+list-style-type: disc;
+margin-left:20px;
+transition:all 0.3s ease;
+cursor:pointer;
+}
+
+.kelebihan li:hover{
+transform:translateX(10px);
+color:var(--primary);
+}
+
+.kekurangan li:hover{
+transform:translateX(10px);
+color:#dc2626;
+}
+
+/* ============ FAKTA MENARIK HIDROLOGI ============ */
+.fakta-menarik-container{
+background:#ffffff;
+border-radius:18px;
+border:1px solid #2e9f7e;
+box-shadow:0 4px 20px rgba(46, 159, 126, 0.1);
+padding:25px 20px;
+margin:20px 0;
+}
+.fakta-menarik-title{
+text-align:center;
+color:#2e9f7e;
+font-weight:700;
+font-size:1.2rem;
+margin-bottom:20px;
+}
+.fakta-menarik-list{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+.fakta-menarik-item{
+display:flex;
+align-items:center;
+background:#f5f5f5;
+border-radius:12px;
+padding:10px 15px;
+position:relative;
+transition:all 0.3s ease;
+border-left:4px solid #2e9f7e;
+}
+.fakta-menarik-item:hover{
+transform:translateY(-3px);
+box-shadow:0 6px 15px rgba(46, 159, 126, 0.15);
+}
+.fakta-menarik-icon{
+display:flex;
+align-items:center;
+justify-content:center;
+width:35px;
+height:35px;
+border-radius:50%;
+background:rgba(46, 159, 126, 0.15);
+margin-right:12px;
+flex-shrink:0;
+font-size:1.1rem;
+}
+.fakta-menarik-text{
+flex:1;
+font-size:0.9rem;
+color:#333;
+line-height:1.4;
+text-align:left;
+}
+
+/* BUTTON */
+.back-button{
+display:inline-block;
+margin-top:50px;
+padding:12px 25px;
+background:var(--primary);
+color:#ffffff;
+text-decoration:none;
+border-radius:25px;
+transition:0.3s;
+}
+
+.back-button:hover{
+background:var(--primary-dark);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.card{
+padding:30px 20px;
+}
+.card h2{
+font-size:1.6rem;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="brand">
+    <a href="/" class="logo">
+      <img src="img/logo-KKP.png" alt="Logo SIMANGRO">
+    </a>
+    <div class="sitename">SIMANGRO KKP</div>
+  </div>
+
+  <button class="burger-menu" onclick="toggleMenu()">
+    <img src="img/menu-dark.png" alt="Menu">
+  </button>
+
+  <nav class="nav" id="navMenu">
+    <a href="/">Beranda</a>
+    <a href="/jenis">Jenis Mangrove</a>
+    <a href="/peta-aksi">Peta Aksi Mangrove</a>
+    <a href="pelaksanaan-rehabilitasi/index.html">Pelaksanaan Rehabilitasi</a>
+    <a href="/regulasi.html" style="color: var(--primary);">Regulasi Mangrove</a>
+    <a href="/quiz">Quiz</a>
+  </nav>
+</header>
+
+<main>
+<section class="card">
+
+<h2>Penyisipan Bibit (Pengkayaan)</h2>
+
+<p class="perencanaan-intro">
+Pola tanam penyisipan bibit (inserting) atau disebut pengkayaan adalah metode restorasi dengan menambahkan jenis mangrove pada area yang masih memiliki vegetasi tersisa namun kerapatannya rendah.
+</p>
+
+<div class="image-container">
+  <div class="image-item">
+    <img src="/RehabilitasiMangrove_KKP.gdb/Imgrehab/penyisipanbibit.jpg" alt="Penyisipan Bibit">
+    <div class="image-source">Sumber: KKP (2025)</div>
+  </div>
+</div>
+
+<div class="pola-tanam-content">
+  <p>
+Menurut JICA dan KLHK (2014), pola pengkayaan dilakukan pada kawasan yang masih memiliki tumbuhan berkayu asli dengan kriteria:
+  </p>
+
+  <ul class="criteria-list">
+    <li>Tinggi tanaman lebih dari 1 meter</li>
+    <li>Diameter batang lebih dari 2 cm</li>
+    <li>Jumlah tegakan 200–600 pohon per hektar</li>
+  </ul>
+
+  <p>
+Metode ini dilakukan dengan menanam jenis mangrove tambahan pada ruang kosong untuk meningkatkan kerapatan, struktur tajuk, dan keberagaman spesies.
+  </p>
+
+  <p>
+Dalam ekosistem mangrove, pola ini diterapkan pada kawasan dengan kerapatan tajuk kategori jarang.
+  </p>
+</div>
+
+<div class="content-box">
+  <h4>Tujuan Utama</h4>
+  <ul class="tujuan-list">
+    <li>Meningkatkan kerapatan vegetasi</li>
+    <li>Memperbaiki struktur tajuk</li>
+    <li>Menambah keanekaragaman jenis</li>
+    <li>Mempercepat pemulihan fungsi ekologis</li>
+  </ul>
+</div>
+
+<div class="fakta-menarik-container">
+<h3 class="fakta-menarik-title">Fakta Menarik Pengkayaan</h3>
+<div class="fakta-menarik-list">
+<div class="fakta-menarik-item">
+<div class="fakta-menarik-icon">🌱</div>
+<div class="fakta-menarik-text">
+Pengkayaan dikenal sebagai rehabilitasi alami terbantu yang memperkuat ekosistem yang sudah ada.
+</div>
+</div>
+<div class="fakta-menarik-item">
+<div class="fakta-menarik-icon">📈</div>
+<div class="fakta-menarik-text">
+Memiliki tingkat keberhasilan tinggi karena dilakukan di lingkungan yang masih stabil.
+</div>
+</div>
+<div class="fakta-menarik-item">
+<div class="fakta-menarik-icon">⏳</div>
+<div class="fakta-menarik-text">
+Mempercepat proses suksesi alami menuju ekosistem yang lebih matang.
+</div>
+</div>
+<div class="fakta-menarik-item">
+<div class="fakta-menarik-icon">🌍</div>
+<div class="fakta-menarik-text">
+Meningkatkan ketahanan ekosistem terhadap perubahan iklim.
+</div>
+</div>
+<div class="fakta-menarik-item">
+<div class="fakta-menarik-icon">🐟</div>
+<div class="fakta-menarik-text">
+Menjadi habitat favorit biota karena struktur vegetasi lebih kompleks.
+</div>
+</div>
+<div class="fakta-menarik-item">
+<div class="fakta-menarik-icon">🔁</div>
+<div class="fakta-menarik-text">
+Efektif digunakan pada lokasi yang gagal dengan metode tanam murni.
+</div>
+</div>
+<div class="fakta-menarik-item">
+<div class="fakta-menarik-icon">🌿</div>
+<div class="fakta-menarik-text">
+Meningkatkan potensi penyerapan karbon (blue carbon).
+</div>
+</div>
+</div>
+</div>
+
+<div class="kk-container">
+
+  <div class="kelebihan">
+    <h4>Kelebihan</h4>
+    <ul>
+      <li>Biaya lebih rendah dibanding penanaman total</li>
+      <li>Mempertahankan vegetasi asli</li>
+      <li>Risiko kegagalan lebih kecil</li>
+      <li>Struktur ekosistem tetap alami</li>
+      <li>Lebih ramah terhadap habitat eksisting</li>
+    </ul>
+  </div>
+
+  <div class="kekurangan">
+    <h4>Kekurangan</h4>
+    <ul>
+      <li>Kompetisi cahaya dan nutrisi</li>
+      <li>Titik tanam harus selektif</li>
+      <li>Tidak efektif untuk kerusakan berat</li>
+      <li>Perlu survei awal yang detail</li>
+      <li>Risiko naungan berlebih</li>
+    </ul>
+  </div>
+
+</div>
+
+<div style="text-align:center;">
+<a href="teknik-rehabilitasi.html" class="back-button">Kembali</a>
+</div>
+
+</section>
+</main>
+
+<script>
+function toggleMenu(){
+document.getElementById("navMenu").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>

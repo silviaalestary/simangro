@@ -1,0 +1,108 @@
+/* Dropdown functionality for technique cards */
+.technique-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  flex-direction: row;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, rgba(22, 163, 74, 0.03) 0%, rgba(34, 197, 94, 0.06) 100%);
+  border-bottom: 2px solid rgba(22, 163, 74, 0.1);
+  position: relative;
+}
+
+.technique-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+  border-radius: 5px 0 0 5px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+.technique-card:hover .technique-header::before,
+.technique-card.active .technique-header::before {
+  opacity: 1;
+  width: 6px;
+}
+
+.technique-number {
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, rgba(22, 163, 74, 0.1), rgba(22, 163, 74, 0.15));
+  border-radius: 12px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.technique-number .step-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.technique-number .step-num {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.05em;
+}
+
+.technique-title {
+  order: 2;
+  flex: 1;
+  margin: 0;
+  color: var(--primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.technique-arrow {
+  order: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(22, 163, 74, 0.08);
+  border-radius: 50%;
+  color: var(--primary);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.technique-card:hover .technique-arrow {
+  background: rgba(22, 163, 74, 0.15);
+  transform: scale(1.05);
+}
+
+.technique-card.active .technique-arrow {
+  background: var(--primary);
+  color: white;
+  transform: rotate(180deg);
+}
+
+.technique-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 28px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.technique-card.active .technique-content {
+  max-height: 2000px;
+  padding: 28px;
+}

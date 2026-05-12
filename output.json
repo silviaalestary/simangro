@@ -1,0 +1,73 @@
+Sheet names: Sheet2, Sheet1, Penanaman_KKP_2020-2024, Jmlh Luasan Penanaman
+
+Sheet: Sheet2
+Total rows: 8
+Sample 1: {
+  "Row Labels": "APBN 2020",
+  "Sum of Luas": 206.60000000000002,
+  "Tahun": 2020,
+  "Luas": 448.70000000000005
+}
+Sample 2: {
+  "Row Labels": "APBN 2021",
+  "Sum of Luas": 417.44999999999993,
+  "Tahun": 2021,
+  "Luas": 1411.79
+}
+
+Sheet: Sheet1
+Total rows: 307
+Sample 1: {
+  "Row Labels": "Aceh"
+}
+Sample 2: {
+  "Row Labels": "Aceh Besar"
+}
+
+Sheet: Penanaman_KKP_2020-2024
+Total rows: 154
+Sample 1: {
+  " Desa ": "Gampong Pasi",
+  " Kecamatan ": "Lhoong",
+  " Kabupaten ": "Aceh Besar",
+  " Provinsi ": "Aceh",
+  " Luas ": 10.46,
+  " Nama_Kel ": "KUB Tunas Usaha Sejahtera",
+  " Tng_Kerja ": 57,
+  " Jml_Bibit ": 50000,
+  " Jns_Bibit ": "Rhizophora mucronata",
+  " Pola_Tanam ": "2 x 1",
+  " Jml_Hari ": 11,
+  " HOK ": 470,
+  " PIC ": "Dit. P4K",
+  " Smbr_Anggr ": "APBN 2021",
+  "Tahun": 2021
+}
+Sample 2: {
+  " Desa ": "Gampong Baru",
+  " Kecamatan ": "Setia Bakti",
+  " Kabupaten ": "Aceh Jaya",
+  " Provinsi ": "Aceh",
+  " Luas ": 25,
+  " Nama_Kel ": "Kelompok Lembaga Eko Wisata Mangrove",
+  " Tng_Kerja ": 155,
+  " Jml_Bibit ": 82500,
+  " Jns_Bibit ": "Rhizophora mucronata",
+  " Pola_Tanam ": "3 x 1",
+  " Jml_Hari ": 5,
+  " HOK ": 775,
+  " PIC ": "Dit. P4K",
+  " Smbr_Anggr ": "APBN 2020",
+  "Tahun": 2020
+}
+
+Sheet: Jmlh Luasan Penanaman
+Total rows: 6
+Sample 1: {
+  "Tahun": 2020,
+  "Penanaman": 448.7
+}
+Sample 2: {
+  "Tahun": 2021,
+  "Penanaman": 1411.79
+}

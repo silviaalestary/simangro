@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teknik Bronjong - Pelaksanaan Rehabilitasi Mangrove</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--primary:#059669;
+--primary-light:#10b981;
+--primary-dark:#047857;
+--secondary:#0ea5e9;
+--border:#e5e7eb;
+--muted:#64748b;
+--white:#ffffff;
+--shadow:None;
+--shadow-hover:0 8px 30px rgba(0,0,0,0.1);
+--max-width:1000px;
+--gradient-primary:linear-gradient(135deg,#16a34a 0%,#22c55e 100%);
+--gradient-text:linear-gradient(135deg,var(--primary),var(--primary-light),var(--secondary));
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+font-family:'Plus Jakarta Sans',sans-serif;
+background:#f0fdf4;
+color:#0f172a;
+line-height:1.7;
+}
+
+/* HEADER */
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:16px 24px;
+background:#ffffff;
+box-shadow:var(--shadow);
+position:sticky;
+top:0;
+z-index:100;
+border-bottom:3px solid transparent;
+border-image:var(--gradient-primary) 1;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:16px;
+}
+
+.logo{
+width:48px;
+height:48px;
+border-radius:10px;
+overflow:hidden;
+}
+
+.logo img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+
+.sitename{
+font-weight:800;
+font-size:1.75rem;
+background:var(--gradient-text);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+letter-spacing:-0.02em;
+}
+
+/* NAV */
+.burger-menu{
+cursor:pointer;
+background:none;
+border:none;
+}
+
+.burger-menu img{
+width:24px;
+}
+
+.nav{
+position:fixed;
+top:0;
+right:-100%;
+height:100vh;
+width:80%;
+max-width:300px;
+background:#ffffff;
+display:flex;
+flex-direction:column;
+padding:80px 24px 24px;
+transition:0.3s;
+box-shadow:var(--shadow);
+gap:8px;
+}
+
+.nav.active{ right:0; }
+
+.nav a{
+color:var(--muted);
+text-decoration:none;
+font-weight:600;
+padding:12px 18px;
+border-radius:20px;
+}
+
+.nav a:hover{
+background:var(--primary);
+color:#ffffff;
+}
+
+/* MAIN */
+main{
+max-width:var(--max-width);
+margin:0 auto;
+padding:60px 20px;
+}
+
+.card{
+background:transparent;
+padding:0;
+border-radius:0;
+box-shadow:none;
+}
+
+.card h2{
+font-size:2rem;
+color:var(--primary);
+margin-bottom:25px;
+text-align:center;
+}
+
+.perencanaan-intro{
+color:var(--muted);
+margin-bottom:40px;
+text-align:center;
+}
+
+/* IMAGE */
+.image-container{
+display:flex;
+justify-content:center;
+margin-bottom:40px;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.image-item{
+width:calc(50% - 10px);
+max-width:400px;
+background:linear-gradient(145deg,rgba(255,255,255,0.85),rgba(22,163,74,0.03));
+backdrop-filter:blur(15px);
+border:1px solid rgba(22,163,74,0.15);
+border-radius:20px;
+overflow:hidden;
+transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+position:relative;
+}
+
+.image-item:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(22,163,74,0.15);
+background:linear-gradient(145deg,rgba(255,255,255,0.95),rgba(22,163,74,0.08));
+border-color:rgba(22,163,74,0.25);
+}
+
+.image-item img{
+width:100%;
+height:250px;
+object-fit:cover;
+background:transparent;
+}
+
+@media(max-width:768px){
+.image-item{
+width:100%;
+max-width:100%;
+}
+}
+
+.image-source{
+text-align:center;
+font-size:0.85rem;
+padding:12px;
+background:rgba(22,163,74,0.05);
+color:var(--muted);
+}
+
+/* CONTENT BOX */
+.pola-tanam-content{
+margin-bottom:40px;
+}
+
+.pola-tanam-content p{
+margin-bottom:15px;
+}
+
+.criteria-list{
+margin:20px 0;
+padding:25px;
+background:#ffffff;
+border:1px solid rgba(0,0,0,0.05);
+border-radius:12px;
+box-shadow:0 4px 15px rgba(5, 150, 105, 0.1);
+position:relative;
+overflow:hidden;
+transition:all 0.3s ease;
+}
+
+.criteria-list:hover{
+transform:translateY(-5px);
+box-shadow:0 8px 25px rgba(5, 150, 105, 0.15);
+border-color:var(--primary);
+}
+
+.criteria-list::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:5px;
+height:100%;
+background:linear-gradient(180deg, var(--primary) 0%, #047857 100%);
+}
+
+.criteria-list li{
+margin-bottom:12px;
+padding:12px 15px;
+background:#f0fdf4;
+border-radius:8px;
+display:flex;
+align-items:center;
+transition:all 0.3s ease;
+}
+
+.criteria-list li:last-child{
+margin-bottom:0;
+}
+
+.criteria-list li::before{
+content:'✓';
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:24px;
+height:24px;
+background:var(--primary);
+color:#ffffff;
+border-radius:50%;
+margin-right:12px;
+font-size:14px;
+font-weight:bold;
+flex-shrink:0;
+}
+
+/* TUJUAN */
+.content-box{
+background:#ffffff;
+padding:30px;
+border-radius:12px;
+box-shadow:var(--shadow);
+margin-bottom:40px;
+}
+
+.content-box h4{
+color:var(--primary);
+margin-bottom:20px;
+text-align:center;
+font-size:1.3rem;
+}
+
+.tujuan-list{
+list-style-type: disc;
+padding:15px 15px 15px 40px;
+background:#ffffff;
+border:1px solid rgba(0,0,0,0.05);
+border-radius:8px;
+transition:all 0.3s ease;
+}
+
+.tujuan-list:hover{
+transform:translateY(-5px);
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+border-color:var(--primary);
+}
+
+.tujuan-list li{
+padding:8px 0;
+margin-bottom:0;
+transition:all 0.3s ease;
+cursor:pointer;
+}
+
+.tujuan-list li:hover{
+transform:translateX(10px);
+color:var(--primary);
+}
+
+
+
+/* KELEBIHAN & KEKURANGAN */
+.kk-container{
+background:var(--white);
+padding:30px;
+border-radius:12px;
+box-shadow:var(--shadow);
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:24px;
+}
+
+.kelebihan{
+background:#f0fdf4;
+padding:30px;
+border-radius:12px;
+position:relative;
+border:1px solid transparent;
+transition:all 0.3s ease;
+}
+
+.kelebihan:hover{
+transform:translateY(-10px);
+border-color:var(--primary);
+box-shadow:0 8px 25px rgba(5, 150, 105, 0.2);
+}
+
+.kekurangan{
+background:#fef2f2;
+padding:30px;
+border-radius:12px;
+position:relative;
+border:1px solid transparent;
+transition:all 0.3s ease;
+}
+
+.kekurangan:hover{
+transform:translateY(-10px);
+border-color:#dc2626;
+box-shadow:0 8px 25px rgba(220, 38, 38, 0.2);
+}
+
+.kelebihan h4{
+color:var(--primary);
+margin-bottom:20px;
+text-align:center;
+
+}
+
+.kekurangan h4{
+color:#dc2626;
+margin-bottom:20px;
+text-align:center;
+
+}
+
+/* RAB SECTION */
+.rab-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  margin-bottom: 45px;
+}
+
+.rab-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #16A34A;
+  margin: 0 0 16px 0;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.rab-info-box {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 253, 244, 0.9) 100%);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  border: 2px solid rgba(22, 163, 74, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.08);
+}
+
+.rab-info-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(22, 163, 74, 0.05), transparent);
+  transition: left 0.6s ease;
+}
+
+.rab-info-box:hover::before {
+  left: 100%;
+}
+
+.rab-info-box:hover {
+  border-color: var(--primary);
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.15);
+  transform: translateY(-4px);
+}
+
+.rab-info-box p {
+  margin: 4px 0;
+  color: var(--dark);
+  line-height: 1.5;
+  font-size: 0.9rem;
+  padding: 2px 0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.rab-info-box p:hover {
+  transform: translateX(8px);
+  color: var(--primary);
+}
+
+.rab-info-box strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.rab-info-box p span {
+  color: var(--dark);
+  font-weight: 500;
+  text-align: left;
+}
+
+.rab-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 18px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08);
+}
+
+.rab-table th {
+  background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 16px 18px;
+  text-align: left;
+}
+
+.rab-table th:first-child {
+  border-radius: 14px 0 0 0;
+}
+
+.rab-table th:last-child {
+  border-radius: 0 14px 0 0;
+}
+
+.rab-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(22, 163, 74, 0.08);
+  color: var(--dark);
+  background: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.92rem;
+}
+
+.rab-table tr:last-child td {
+  border-bottom: none;
+}
+
+.rab-table tr:hover td {
+  background: rgba(22, 163, 74, 0.06);
+  transform: scale(1.005);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rab-table tr {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rab-table tbody tr:hover {
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.12);
+  transform: translateX(3px);
+}
+
+.rab-section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin: 0 0 18px 0;
+  padding-bottom: 10px;
+  border-bottom: 3px solid rgba(22, 163, 74, 0.15);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+
+.rab-section-title:hover {
+  color: var(--primary);
+  transform: translateX(3px);
+  border-bottom-color: var(--primary);
+}
+
+.rab-section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--primary);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.rab-section-title:hover::after {
+  width: 100%;
+}
+
+.rab-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.18);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rab-total span:first-child {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.rab-total span:last-child {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.rab-note {
+  margin-top: 24px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(22, 163, 74, 0.04), rgba(34, 197, 94, 0.06));
+  border-left: 5px solid var(--primary);
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.75;
+  border: 1px solid rgba(22, 163, 74, 0.08);
+  border-left-width: 5px;
+}
+
+.rab-note strong {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.kelebihan ul,
+.kekurangan ul{
+list-style:none;
+padding:0;
+margin:0;
+}
+
+.kelebihan li,
+.kekurangan li{
+padding:8px 0;
+list-style-type: disc;
+margin-left:20px;
+transition:all 0.3s ease;
+cursor:pointer;
+}
+
+.kelebihan li:hover{
+transform:translateX(10px);
+color:var(--primary);
+}
+
+.kekurangan li:hover{
+transform:translateX(10px);
+color:#dc2626;
+}
+
+/* BUTTON */
+.back-button{
+display:inline-block;
+margin-top:50px;
+padding:12px 25px;
+background:var(--primary);
+color:#ffffff;
+text-decoration:none;
+border-radius:25px;
+transition:0.3s;
+}
+
+.back-button:hover{
+background:var(--primary-dark);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.card{
+padding:30px 20px;
+}
+.card h2{
+font-size:1.6rem;
+}
+}
+
+/* ============ FAKTA MENARIK HIDROLOGI ============ */
+.fakta-menarik-container {
+background: #ffffff;
+border-radius: 18px;
+border: 1px solid #2e9f7e;
+box-shadow: 0 4px 20px rgba(46, 159, 126, 0.1);
+padding: 25px 20px;
+margin: 20px 0;
+}
+.fakta-menarik-title {
+text-align: center;
+color: #2e9f7e;
+font-weight: 700;
+font-size: 1.2rem;
+margin-bottom: 20px;
+}
+.fakta-menarik-list {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+.fakta-menarik-item {
+display: flex;
+align-items: center;
+background: #f5f5f5;
+border-radius: 12px;
+padding: 10px 15px;
+position: relative;
+transition: all 0.3s ease;
+border-left: 4px solid #2e9f7e;
+}
+.fakta-menarik-item:hover {
+transform: translateY(-3px);
+box-shadow: 0 6px 15px rgba(46, 159, 126, 0.15);
+}
+.fakta-menarik-icon {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 35px;
+height: 35px;
+border-radius: 50%;
+background: rgba(46, 159, 126, 0.15);
+margin-right: 12px;
+flex-shrink: 0;
+font-size: 1.1rem;
+}
+.fakta-menarik-text {
+flex: 1;
+font-size: 0.9rem;
+color: #333;
+line-height: 1.4;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="brand">
+    <a href="/" class="logo">
+      <img src="img/logo-KKP.png" alt="Logo SIMANGRO">
+    </a>
+    <div class="sitename">SIMANGRO KKP</div>
+  </div>
+  <button class="burger-menu" onclick="document.querySelector('.nav').classList.toggle('active')">
+    <img src="img/menu-dark.png" alt="Menu" class="menu-icon">
+  </button>
+</header>
+
+<nav class="nav">
+<a href="/">Beranda</a>
+<a href="/jenis">Jenis Mangrove</a>
+<a href="/peta-aksi">Peta Aksi Mangrove</a>
+<a href="teknik-rehabilitasi.html" style="color: var(--primary);">Rehabilitasi Mangrove</a>
+<a href="/regulasi.html" style="color: var(--primary);">Regulasi Mangrove</a>
+<a href="/quiz">Quiz</a>
+</nav>
+
+<main>
+  <div class="card">
+    <h2>Teknik Bronjong</h2>
+    <p class="perencanaan-intro">
+Teknik Bronjong merupakan metode rehabilitasi mangrove yang menggunakan struktur bronjong bambu berisi media tanam untuk melindungi bibit dari gelombang dan arus. 
+Struktur ini berfungsi sebagai pelindung sementara hingga bibit mampu tumbuh dan membentuk sistem perakaran yang kuat. Media tanam umumnya berupa campuran tanah merah, lumpur, dan pasir yang menyediakan nutrisi bagi pertumbuhan bibit. Penggunaan bambu dipilih karena relatif tahan terhadap kondisi pesisir serta memiliki biaya yang lebih terjangkau.
+    </p>
+
+    <div class="image-container">
+      <div class="image-item">
+        <img src="/RehabilitasiMangrove_KKP.gdb/Img/beronjong4.jpeg" alt="Teknik Bronjong" />
+        <div class="image-source">Sumber: KKP (2025)</div>
+      </div>
+      <div class="image-item">
+        <img src="/RehabilitasiMangrove_KKP.gdb/img/selongsong1.jpeg" alt="Teknik Selonsong" />
+        <div class="image-source">Sumber: KKP (2025)</div>
+      </div>
+    </div>
+
+ 
+
+    <div class="content-box">
+      <h4>Karakteristik Lokasi</h4>
+      <ul class="tujuan-list">
+        <li>Area pesisir dengan gelombang sedang hingga kuat</li>
+        <li>Substrat berupa pasir atau lumpur</li>
+        <li>Salinitas antara 20-35 ppt</li>
+        <li>Terlindung sebagian dari gelombang besar</li>
+        <li>Area yang sering mengalami abrasi</li>
+      </ul>
+    </div>
+
+    <div class="content-box">
+      <h4>Fakta Menarik Teknik Bronjong</h4>
+      <div class="fakta-menarik-container">
+        <div class="fakta-menarik-list">
+          <div class="fakta-menarik-item">
+            <div class="fakta-menarik-icon">🛡️</div>
+            <div class="fakta-menarik-text">
+              Bronjong berfungsi sebagai pelindung sementara hingga akar mangrove kuat.
+            </div>
+          </div>
+          <div class="fakta-menarik-item">
+            <div class="fakta-menarik-icon">🌊</div>
+            <div class="fakta-menarik-text">
+              Efektif meredam energi gelombang dan menjaga bibit tetap stabil.
+            </div>
+          </div>
+          <div class="fakta-menarik-item">
+            <div class="fakta-menarik-icon">🪵</div>
+            <div class="fakta-menarik-text">
+              Bambu dipilih karena ramah lingkungan dan cukup tahan di pesisir.
+            </div>
+          </div>
+          <div class="fakta-menarik-item">
+            <div class="fakta-menarik-icon">🌱</div>
+            <div class="fakta-menarik-text">
+              Media campuran tanah, lumpur, dan pasir membantu pertumbuhan awal bibit.
+            </div>
+          </div>
+          <div class="fakta-menarik-item">
+            <div class="fakta-menarik-icon">🏝️</div>
+            <div class="fakta-menarik-text">
+              Membantu mengurangi abrasi sambil mendukung pembentukan ekosistem baru.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kk-container">
+      <div class="kelebihan">
+        <h4>Kelebihan</h4>
+        <ul>
+          <li>Memberikan perlindungan maksimal dari gelombang</li>
+          <li>Meningkatkan tingkat keberhasilan penanaman</li>
+          <li>Dapat digunakan di area dengan kondisi ekstrem</li>
+          <li>Material bambu mudah didapat dan ramah lingkungan</li>
+          <li>Struktur bronjong dapat bertahan lama</li>
+        </ul>
+      </div>
+      <div class="kekurangan">
+        <h4>Kekurangan</h4>
+        <ul>
+          <li>Biaya pembuatan bronjong relatif tinggi</li>
+          <li>Membutuhkan tenaga kerja yang lebih banyak</li>
+          <li>Waktu pemasangan lebih lama</li>
+          <li>Memerlukan pemeliharaan berkala</li>
+          <li>Tidak cocok untuk area dengan gelombang sangat ekstrem</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rab-container">
+      <h3 class="rab-title" style="font-size: 1.1rem; color: var(--primary-dark);">Contoh Rincian Biaya Rehabilitasi Sistem Bronjong</h3>
+
+      <div class="rab-info-box">
+        <p><strong>Tahun Pelaksanaan:</strong> <span>2025</span></p>
+        <p><strong>Jenis Bibit:</strong> <span>Rhizophora mucronata (tinggi 80–100 cm)</span></p>
+        <p><strong>Jumlah Bibit:</strong> <span>3.000 batang</span></p>
+        <p><strong>Pola Penanaman:</strong> <span>Sistem Bronjong (selongsong dan bronjong bambu dengan media tanam)</span></p>
+        <p><strong>Total Nilai Pekerjaan (termasuk PPN 11%):</strong> <span>Rp199.834.038</span></p>
+      </div>
+
+      <h4 class="rab-section-title">II. Rincian Anggaran Biaya (RAB)</h4>
+
+      <h5 class="rab-section-title" style="font-size: 0.9rem;">A. Bahan Penanaman</h5>
+
+      <table class="rab-table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Uraian</th>
+            <th>Volume</th>
+            <th>Satuan</th>
+            <th>Harga Satuan (+PPN 11%)</th>
+            <th>Jumlah</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Bronjong (T 180 cm + kaki, Ø 30 cm)</td>
+            <td>760</td>
+            <td>unit</td>
+            <td>Rp89.286</td>
+            <td>Rp67.857.569</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Bambu Tali Tiang Pancang (P 3 m, Ø 7–10 cm)</td>
+            <td>1.520</td>
+            <td>batang</td>
+            <td>Rp11.905</td>
+            <td>Rp18.095.352</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Bambu Betung (P 12 m, Ø >14 cm)</td>
+            <td>340</td>
+            <td>batang</td>
+            <td>Rp119.000</td>
+            <td>Rp40.460.000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Tali Bagan</td>
+            <td>10</td>
+            <td>unit</td>
+            <td>Rp444.000</td>
+            <td>Rp4.440.000</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Bibit Rhizophora mucronata (80–100 cm)</td>
+            <td>3.000</td>
+            <td>batang</td>
+            <td>Rp2.370</td>
+            <td>Rp7.110.000</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Ajir Bambu (P 120 cm, Ø 2–3 cm)</td>
+            <td>3.000</td>
+            <td>batang</td>
+            <td>Rp1.780</td>
+            <td>Rp5.340.000</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Tali Plastik Rafia (rol besar)</td>
+            <td>10</td>
+            <td>unit</td>
+            <td>Rp30.000</td>
+            <td>Rp300.000</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Tanah Merah Super</td>
+            <td>35</td>
+            <td>m³</td>
+            <td>Rp238.000</td>
+            <td>Rp8.330.000</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h5 class="rab-section-title" style="font-size: 0.9rem;">B. Upah Kerja</h5>
+
+      <table class="rab-table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Uraian</th>
+            <th>Volume</th>
+            <th>Satuan</th>
+            <th>Harga Satuan (+PPN 11%)</th>
+            <th>Jumlah</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Pekerjaan Selongsong Mangrove (pembuatan, pemasangan, pengisian media tanam, penanaman)</td>
+            <td>1.280</td>
+            <td>unit</td>
+            <td>Rp23.481</td>
+            <td>Rp30.055.603</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Pekerjaan Bronjong Mangrove (pemasangan, pengisian media tanam, penanaman)</td>
+            <td>760</td>
+            <td>unit</td>
+            <td>Rp23.481</td>
+            <td>Rp17.845.514</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h5 class="rab-section-title" style="font-size: 0.9rem;">Total Keseluruhan</h5>
+
+      <div class="rab-total" style="background: #059669;">
+        <p class="total-final">TOTAL KESELURUHAN: Rp199.834.038</p>
+      </div>
+
+      <div class="rab-note">
+        <p><strong>Ringkasan</strong></p>
+        <p>Contoh estimasi ini menunjukkan bahwa rehabilitasi mangrove menggunakan Sistem Bronjong dengan 3.000 batang Rhizophora mucronata memerlukan anggaran sebesar Rp199.834.038 (termasuk PPN 11%). Struktur biaya didominasi oleh komponen pembuatan dan pemasangan bronjong, bambu pancang, serta media tanam sebagai bagian dari sistem perlindungan awal bibit. RAB ini dapat dijadikan referensi perencanaan rehabilitasi mangrove dengan teknik bronjong pada lokasi yang memerlukan stabilisasi tambahan untuk mendukung keberhasilan pertumbuhan tanaman.</p>
+      </div>
+    </div>
+</div>
+<div style="text-align: center;">
+<a href="teknik-rehabilitasi.html" class="back-button">Kembali</a>
+</div>
+  </section>
+</main>
+
+ 

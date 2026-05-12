@@ -1,0 +1,681 @@
+
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metode Restorasi Hidrologi - Pelaksanaan Rehabilitasi Mangrove</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #059669;
+  --primary-light: #10b981;
+  --primary-dark: #047857;
+  --secondary: #0ea5e9;
+  --accent: #16a34a;
+  --accent-light: #22c55e;
+  --accent-dark: #15803d;
+  --dark: #0f172a;
+  --muted: #64748b;
+  --white: #ffffff;
+  --border: #d1fae5;
+  --shadow: 0 4px 16px rgba(22, 163, 74, 0.1);
+  --shadow-hover: 0 8px 32px rgba(22, 163, 74, 0.15);
+  --shadow-intense: 0 20px 40px rgba(22, 163, 74, 0.2);
+  --gradient-primary: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+  --gradient-bg: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #d1fae5 100%);
+  --gradient-text: linear-gradient(135deg, var(--primary), var(--primary-light), var(--secondary));
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --max-width: 1000px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--gradient-bg);
+  background-attachment: fixed;
+  color: var(--dark);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+  radial-gradient(circle at 20% 80%, rgba(22, 163, 74, 0.08) 0%, transparent 50%),
+  radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.06) 0%, transparent 50%);
+  animation: float 25s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(30px, -30px) rotate(120deg); }
+  66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+/* ============ HEADER ============ */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-intense);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid transparent;
+  border-image: var(--gradient-primary) 1;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(22, 163, 74, 0.25);
+  flex-shrink: 0;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sitename {
+  font-weight: 800;
+  font-size: 1.75rem;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+/* ============ BURGER MENU ============ */
+.burger-menu {
+  display: flex;
+  cursor: pointer;
+  background: rgba(15,23,42,0.04);
+  border: none;
+  padding: 8px;
+  z-index: 1001;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  transition: background-color var(--transition), transform var(--transition);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+}
+
+.burger-menu:hover {
+  background: rgba(22, 163, 74, 0.1);
+  transform: scale(1.05);
+}
+
+.burger-menu img {
+  width: 24px;
+  height: 24px;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+.burger-menu img.menu-icon { display: block; }
+
+@media (prefers-color-scheme: dark) {
+  .burger-menu { background: rgba(255,255,255,0.04); }
+}
+
+/* ============ NAVIGATION ============ */
+.nav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100vh;
+  width: 80%;
+  max-width: 300px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  flex-direction: column;
+  padding: 80px 24px 24px;
+  transition: right var(--transition);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+}
+
+.nav.active {
+  right: 0;
+}
+
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 25px;
+  transition: all var(--transition);
+  font-size: 0.9rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav a::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--transition);
+  z-index: -1;
+}
+
+.nav a:hover {
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.nav a:hover::before {
+  opacity: 1;
+}
+
+/* ============ MAIN CONTENT ============ */
+main {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 80px 40px;
+  text-align: center;
+  position: relative;
+}
+
+.card h2 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0 0 32px 0;
+  line-height: 1.2;
+}
+
+.perencanaan-intro {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 1rem;
+  margin: 0 auto 0 auto;
+  max-width: 900px;
+}
+
+/* ============ IMAGE ============ */
+.image-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.image-item {
+  width: calc(50% - 10px);
+  max-width: 400px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.85), rgba(22,163,74,0.03));
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(22,163,74,0.15);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all var(--transition);
+  position: relative;
+}
+
+.image-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(22, 163, 74, 0.15);
+  background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(22,163,74,0.08));
+  border-color: rgba(22,163,74,0.25);
+}
+
+.image-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  background: transparent;
+}
+
+.image-source {
+  text-align: center;
+  font-size: 0.85rem;
+  padding: 12px;
+  background: rgba(22, 163, 74, 0.05);
+  color: var(--muted);
+}
+
+/* ============ FACT BOX ============ */
+.fact-box {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin: 20px 0;
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.fact-box:hover {
+  border-color: var(--primary);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(5, 150, 105, 0.15);
+}
+
+.fact-box h3 {
+  color: var(--primary);
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.fact-list {
+  list-style-type: disc;
+  padding: 15px 15px 15px 40px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.fact-list:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-color: var(--primary);
+}
+
+.fact-list li {
+  padding: 8px 0 8px 10px;
+  margin-bottom: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.fact-list li:hover {
+  transform: translateX(10px);
+  color: var(--primary);
+}
+
+/* ============ KELEBIHAN & KEKURANGAN ============ */
+.kk-container {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.kelebihan {
+  background: #f0fdf4;
+  padding: 30px;
+  border-radius: 12px;
+  position: relative;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.kelebihan:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: 0 8px 25px rgba(5, 150, 105, 0.2);
+}
+
+.kekurangan {
+  background: #fef2f2;
+  padding: 30px;
+  border-radius: 12px;
+  position: relative;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.kekurangan:hover {
+  transform: translateY(-10px);
+  border-color: #dc2626;
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.2);
+}
+
+.kelebihan h4 {
+  color: var(--primary);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.kekurangan h4 {
+  color: #dc2626;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.kelebihan ul,
+.kekurangan ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.kelebihan li,
+.kekurangan li {
+  padding: 8px 0 8px 10px;
+  list-style-type: disc;
+  margin-left: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.kelebihan li:hover {
+  transform: translateX(10px);
+  color: var(--primary);
+}
+
+.kekurangan li:hover {
+  transform: translateX(10px);
+  color: #dc2626;
+}
+
+/* ============ BUTTON ============ */
+.back-button {
+  display: inline-block;
+  margin-top: 50px;
+  margin-bottom: -40px;
+  padding: 12px 25px;
+  background: var(--primary);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+.back-button:hover {
+  background: var(--primary-dark);
+}
+
+/* ============ FAKTA MENARIK HIDROLOGI ============ */
+.fakta-menarik-container {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #2e9f7e;
+  box-shadow: 0 4px 20px rgba(46, 159, 126, 0.1);
+  padding: 25px 20px;
+  margin: 20px 0;
+}
+
+.fakta-menarik-title {
+  text-align: center;
+  color: #2e9f7e;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.fakta-menarik-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fakta-menarik-item {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 10px 15px;
+  position: relative;
+  transition: all 0.3s ease;
+  border-left: 4px solid #2e9f7e;
+}
+
+.fakta-menarik-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(46, 159, 126, 0.15);
+}
+
+.fakta-menarik-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: rgba(46, 159, 126, 0.15);
+  margin-right: 12px;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+
+.fakta-menarik-text {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:768px){
+  .card{
+    padding: 30px 20px;
+  }
+  .card h2{
+    font-size: 1.6rem;
+  }
+  .image-item {
+    width: 100%;
+    max-width: 100%;
+  }
+  .fakta-menarik-container {
+    padding: 20px 15px;
+  }
+  .fakta-menarik-title {
+    font-size: 1.1rem;
+  }
+  .fakta-menarik-item {
+    padding: 8px 12px;
+  }
+  .fakta-menarik-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  .fakta-menarik-text {
+    font-size: 0.85rem;
+  }
+}
+</style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="brand">
+      <a href="/" class="logo">
+        <img src="img/logo-KKP.png" alt="Logo SIMANGRO"/>
+      </a>
+      <div class="sitename">SIMANGRO KKP</div>
+    </div>
+    <button class="burger-menu" aria-label="Toggle menu" aria-expanded="false">
+      <img src="img/menu-dark.png" alt="Menu" class="menu-icon">
+    </button>
+    <nav class="nav" aria-label="Menu utama">
+      <a href="/">Beranda</a>
+      <a href="/jenis">Jenis Mangrove</a>
+      <a href="/peta-aksi">Peta Aksi Mangrove</a>
+      <a href="teknik-rehabilitasi.html">Rehabilitasi Mangrove</a>
+      <a href="/regulasi.html">Regulasi Mangrove</a>
+      <a href="/quiz">Quiz</a>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- JUDUL & PENGERTIAN -->
+    <section class="card">
+      <h2>Metode Restorasi Hidrologi</h2>
+      <p class="perencanaan-intro">
+        Restorasi hidrologi adalah pendekatan rehabilitasi mangrove yang berfokus pada pemulihan kondisi hidrologi alami area pesisir, seperti aliran air, pasang surut, dan salinitas. Metode ini mengakui bahwa gangguan hidrologi sering menjadi penyebab utama kerusakan ekosistem mangrove, sehingga pemulihan kondisi hidrologi menjadi kunci keberhasilan rehabilitasi <a href="https://www.researchgate.net/publication/228654323" target="_blank">(Lewis, 2009)</a>; <a href="https://www.kkp.go.id" target="_blank">(KKP, 2024)</a>.
+      </p>
+
+      <div style="margin-top: 60px;"></div>
+
+      <!-- GAMBAR -->
+      <div class="image-container">
+        <a href="https://www.mongabay.co.id/2021/06/18/restorasi-hidrologi-cara-sukses-rehabilitasi-mangrove-ala-rignolda-djamaluddin/" target="_blank">
+          <div class="image-item" style="width: 100%; max-width: 600px;">
+            <img src="/RehabilitasiMangrove_KKP.gdb/img/hidrologi1.jpg" alt="Metode Restorasi Hidrologi">
+            <div class="image-source">Sumber: <a href="https://www.mongabay.co.id/2021/06/18/restorasi-hidrologi-cara-sukses-rehabilitasi-mangrove-ala-rignolda-djamaluddin/" target="_blank" style="color: var(--primary);">Mongabay.co.id</a></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAKTA-FAKTA -->
+    <section class="card" style="padding-top: 0;">
+      <div class="fact-box">
+        <h3>Tujuan Restorasi Hidrologi</h3>
+        <ul class="fact-list">
+          <li>Memulihkan aliran air dan pasang surut yang terganggu</li>
+          <li>Mengembalikan salinitas yang sesuai untuk pertumbuhan mangrove</li>
+          <li>Membuka saluran air yang tersumbat</li>
+          <li>Mengurangi stagnasi air yang dapat merusak ekosistem</li>
+          <li>Menciptakan kondisi hidrologi yang mendukung regenerasi alami</li>
+        </ul>
+      </div>
+
+      <div class="fact-box">
+        <h3>Teknik Restorasi Hidrologi</h3>
+        <ul class="fact-list">
+          <li>Pembukaan saluran air (tidal creeks) untuk memperbaiki aliran pasang surut</li>
+          <li>Penghapusan tanggul atau bendang yang menghalangi aliran air</li>
+          <li>Pembuatan lubang (breach) pada tanggul untuk menghubungkan area dengan laut</li>
+          <li>Pengaturan elevasi lahan untuk memperbaiki pola genangan</li>
+          <li>Pembersihan sedimen yang menyumbat saluran air</li>
+        </ul>
+      </div>
+
+      <div class="fakta-menarik-container">
+        <h3 class="fakta-menarik-title">Fakta Menarik Hidrologi</h3>
+        <div class="fakta-menarik-list">
+          <div class="fakta-menarik-item">
+            <div class="fakta-menarik-icon">🌱</div>
+            <div class="fakta-menarik-text">Memulihkan aliran air dapat memicu pertumbuhan mangrove secara alami tanpa penanaman langsung.</div>
+          </div>
+          <div class="fakta-menarik-item">
+            <div class="fakta-menarik-icon">💰</div>
+            <div class="fakta-menarik-text">Biaya restorasi hidrologi lebih rendah karena tidak membutuhkan penanaman massal.</div>
+          </div>
+          <div class="fakta-menarik-item">
+            <div class="fakta-menarik-icon">🌍</div>
+            <div class="fakta-menarik-text">Regenerasi alami menghasilkan ekosistem yang lebih beragam dan seimbang.</div>
+          </div>
+          <div class="fakta-menarik-item">
+            <div class="fakta-menarik-icon">🌳</div>
+            <div class="fakta-menarik-text">Mangrove yang tumbuh alami lebih tahan terhadap gelombang dan abrasi.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KELEBIHAN & KEKURANGAN -->
+    <section class="card" style="padding-top: 0;">
+      <div class="kk-container">
+        <div class="kelebihan">
+          <h4>Kelebihan</h4>
+          <ul>
+            <li>Tingkat keberhasilan yang lebih tinggi</li>
+            <li>Biaya yang lebih rendah</li>
+            <li>Ekosistem yang lebih alami dan beragam</li>
+            <li>Memperbaiki fungsi hidrologi secara menyeluruh</li>
+            <li>Regenerasi alami yang lebih berkelanjutan</li>
+          </ul>
+        </div>
+        <div class="kekurangan">
+          <h4>Kekurangan</h4>
+          <ul>
+            <li>Membutuhkan pemahaman hidrologi yang mendalam</li>
+            <li>Waktu yang lebih lama untuk melihat hasil</li>
+            <li>Memerlukan monitoring yang intensif</li>
+            <li>Tidak semua lokasi cocok untuk metode ini</li>
+            <li>Membutuhkan koordinasi dengan berbagai pihak</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOMBOL KEMBALI -->
+    <section class="card" style="padding-top: 0; padding-bottom: 40px; background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(240,253,244,0.95) 100%);">
+      <div style="text-align: center;">
+        <a href="teknik-rehabilitasi.html" class="back-button">Kembali</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Burger menu functionality
+    const burgerMenu = document.querySelector('.burger-menu');
+    const nav = document.querySelector('.nav');
+
+    burgerMenu.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      burgerMenu.setAttribute('aria-expanded', nav.classList.contains('active'));
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target) && !burgerMenu.contains(e.target)) {
+        nav.classList.remove('active');
+        burgerMenu.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

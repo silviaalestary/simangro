@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teknik Guludan - Rehabilitasi Mangrove</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--primary:#059669;
+--primary-light:#10b981;
+--primary-dark:#047857;
+--dark:#0f172a;
+--muted:#64748b;
+--white:#ffffff;
+--border:#d1fae5;
+--shadow:0 4px 16px rgba(22,163,74,0.08);
+--shadow-hover:0 8px 28px rgba(22,163,74,0.15);
+--gradient-primary:linear-gradient(135deg,#16a34a 0%,#22c55e 100%);
+--gradient-bg:linear-gradient(135deg,#f0fdf4 0%,#ecfdf5 50%,#d1fae5 100%);
+--transition:0.3s ease;
+--max-width:1000px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+/* HEADER */
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:16px 24px;
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(20px);
+box-shadow:var(--shadow);
+position:sticky;
+top:0;
+z-index:100;
+border-bottom:3px solid transparent;
+border-image:var(--gradient-primary) 1;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:16px;
+}
+
+.logo{
+width:48px;
+height:48px;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 4px 20px rgba(22,163,74,0.25);
+flex-shrink:0;
+}
+
+.logo img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+
+.sitename{
+font-weight:800;
+font-size:1.75rem;
+background:var(--gradient-primary);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+letter-spacing:-0.02em;
+}
+
+.burger-menu{
+display:flex;
+cursor:pointer;
+background:rgba(15,23,42,0.04);
+border:none;
+padding:8px;
+z-index:1001;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+border-radius:8px;
+transition:background-color var(--transition),transform var(--transition);
+box-shadow:0 1px 0 rgba(0,0,0,0.03);
+}
+
+.burger-menu:hover{
+background:rgba(22,163,74,0.1);
+transform:scale(1.05);
+}
+
+.burger-menu img{
+width:24px;
+height:24px;
+opacity:1 !important;
+filter:none !important;
+}
+
+.nav{
+position:fixed;
+top:0;
+right:-100%;
+height:100vh;
+width:80%;
+max-width:300px;
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(10px);
+flex-direction:column;
+padding:80px 24px 24px;
+transition:right var(--transition);
+box-shadow:var(--shadow);
+z-index:1000;
+display:flex;
+gap:8px;
+}
+
+.nav.active{
+right:0;
+}
+
+.nav a{
+color:var(--muted);
+text-decoration:none;
+font-weight:600;
+padding:12px 20px;
+border-radius:25px;
+transition:all var(--transition);
+font-size:0.9rem;
+position:relative;
+overflow:hidden;
+}
+
+.nav a::before{
+content:'';
+position:absolute;
+inset:0;
+background:var(--gradient-primary);
+opacity:0;
+transition:opacity var(--transition);
+z-index:-1;
+}
+
+.nav a:hover{
+color:var(--white);
+transform:translateY(-2px);
+box-shadow:var(--shadow-hover);
+}
+
+.nav a:hover::before{
+opacity:1;
+}
+
+body{
+font-family:'Plus Jakarta Sans',sans-serif;
+background:var(--gradient-bg);
+background-attachment:fixed;
+color:var(--dark);
+line-height:1.7;
+}
+
+main{
+max-width:var(--max-width);
+margin:0 auto;
+padding:60px 20px;
+}
+
+h2{
+font-size:2.2rem;
+background:var(--gradient-primary);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-align:center;
+margin-bottom:20px;
+}
+
+.perencanaan-intro{
+text-align:center;
+max-width:850px;
+margin:0 auto 50px auto;
+color:var(--muted);
+}
+
+/* ================= IMAGE ================= */
+
+.pola-tanam-container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:24px;
+margin-bottom:50px;
+}
+
+.pola-tanam-image{
+background:var(--white);
+border-radius:12px;
+overflow:hidden;
+box-shadow:var(--shadow);
+}
+
+.pola-tanam-image img{
+width:100%;
+height:300px;
+object-fit:contain;
+background:#ffffff;
+}
+
+.pola-tanam-image-source{
+padding:10px;
+font-size:0.85rem;
+text-align:center;
+color:var(--muted);
+background:#f1f5f9;
+}
+
+/* ================= SPESIFIKASI ================= */
+
+.content-box{
+background:var(--white);
+padding:40px;
+border-radius:14px;
+box-shadow:var(--shadow);
+margin-bottom:50px;
+}
+
+.content-box h4{
+text-align:center;
+margin-bottom:30px;
+color:var(--primary-dark);
+font-size:1.2rem;
+}
+
+.spesifikasi-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:24px;
+}
+
+.spesifikasi-item{
+border:1px solid var(--border);
+border-radius:12px;
+padding:25px;
+background:#ffffff;
+transition:var(--transition);
+}
+
+.spesifikasi-item:hover{
+box-shadow:var(--shadow-hover);
+border-color:var(--primary-light);
+transform:translateY(-8px);
+}
+
+.spesifikasi-item strong{
+display:block;
+margin-bottom:15px;
+color:var(--primary);
+text-align:center;
+font-size:1rem;
+}
+
+ul{padding-left:18px;}
+li{margin-bottom:8px;transition:var(--transition);}
+
+.kelebihan li:hover{
+color:var(--primary);
+transform:translateX(5px);
+}
+
+.kekurangan li:hover{
+color:#b91c1c;
+transform:translateX(5px);
+}
+
+/* ================= KELEBIHAN KEKURANGAN ================= */
+
+.kk-wrapper{
+background:var(--white);
+padding:40px;
+border-radius:14px;
+box-shadow:var(--shadow);
+margin-bottom:40px;
+}
+
+.kk-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:24px;
+margin-top:20px;
+}
+
+.kelebihan,
+.kekurangan{
+padding:20px;
+border-radius:12px;
+transition:var(--transition);
+}
+
+.kelebihan:hover{
+transform:translateY(-8px);
+box-shadow:var(--shadow-hover);
+}
+
+.kekurangan:hover{
+transform:translateY(-8px);
+box-shadow:var(--shadow-hover);
+}
+
+.kelebihan{
+background:#ecfdf5;
+border:1px solid var(--primary);
+}
+
+.kekurangan{
+background:#fef2f2;
+border:1px solid #b91c1c;
+}
+
+.kelebihan h4{
+color:#15803d;
+margin-bottom:15px;
+text-align:center;
+}
+
+.kekurangan h4{
+color:#b91c1c;
+margin-bottom:15px;
+text-align:center;
+}
+
+/* ================= BUTTON ================= */
+
+.button-wrapper{
+text-align:center;
+margin-top:30px;
+}
+
+.back-button{
+display:inline-block;
+padding:12px 28px;
+background:var(--gradient-primary);
+color:white;
+text-decoration:none;
+border-radius:30px;
+transition:var(--transition);
+font-weight:600;
+}
+
+.back-button:hover{
+opacity:0.9;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+.pola-tanam-container{
+grid-template-columns:1fr;
+}
+
+.spesifikasi-grid{
+grid-template-columns:1fr;
+}
+
+.kk-grid{
+grid-template-columns:1fr;
+}
+
+h2{font-size:1.7rem;}
+
+}
+
+/* ============ FAKTA MENARIK HIDROLOGI ============ */
+.fakta-menarik-container {
+background: #ffffff;
+border-radius: 18px;
+border: 1px solid #2e9f7e;
+box-shadow: 0 4px 20px rgba(46, 159, 126, 0.1);
+padding: 25px 20px;
+margin: 20px 0;
+}
+.fakta-menarik-title {
+text-align: center;
+color: #2e9f7e;
+font-weight: 700;
+font-size: 1.2rem;
+margin-bottom: 20px;
+}
+.fakta-menarik-list {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+.fakta-menarik-item {
+display: flex;
+align-items: center;
+background: #f5f5f5;
+border-radius: 12px;
+padding: 10px 15px;
+position: relative;
+transition: all 0.3s ease;
+border-left: 4px solid #2e9f7e;
+}
+.fakta-menarik-item:hover {
+transform: translateY(-3px);
+box-shadow: 0 6px 15px rgba(46, 159, 126, 0.15);
+}
+.fakta-menarik-icon {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 35px;
+height: 35px;
+border-radius: 50%;
+background: rgba(46, 159, 126, 0.15);
+margin-right: 12px;
+flex-shrink: 0;
+font-size: 1.1rem;
+}
+.fakta-menarik-text {
+flex: 1;
+font-size: 0.9rem;
+color: #333;
+line-height: 1.4;
+}
+</style>
+</head>
+
+<body>
+<!-- HEADER -->
+<header class="header">
+<div class="brand">
+<a href="/" class="logo">
+<img src="img/logo-KKP.png" alt="Logo SIMANGRO"/>
+</a>
+<div class="sitename">SIMANGRO KKP</div>
+</div>
+<button class="burger-menu" aria-label="Toggle menu" aria-expanded="false" onclick="document.querySelector('.nav').classList.toggle('active')">
+<img src="img/menu-dark.png" alt="Menu" class="menu-icon">
+</button>
+<nav class="nav" aria-label="Menu utama">
+  <a href="/">Beranda</a>
+<a href="/jenis">Jenis Mangrove</a>
+<a href="/peta-aksi">Peta Aksi Mangrove</a>
+<a href="teknik-rehabilitasi.html" style="color: var(--primary);">Rehabilitasi Mangrove</a>
+<a href="/regulasi.html" style="color: var(--primary);">Regulasi Mangrove</a>
+<a href="/quiz">Quiz</a>
+</nav>
+</header>
+
+<main>
+
+<h2>Teknik Guludan</h2>
+
+<p class="perencanaan-intro">
+Teknik guludan merupakan metode rehabilitasi mangrove pada lahan tergenang dengan membangun petak tanam menggunakan pembatas bambu. Metode ini menciptakan mikrohabitat yang lebih stabil sehingga pertumbuhan bibit mangrove menjadi optimal.
+</p>
+
+<!-- GAMBAR -->
+
+<div class="pola-tanam-container">
+
+<div class="pola-tanam-image">
+<img src="/RehabilitasiMangrove_KKP.gdb/Imgrehab/guludan1.png" alt="Teknik Guludan 1">
+<div class="pola-tanam-image-source">Sumber: KKP (2025)</div>
+</div>
+
+<div class="pola-tanam-image">
+<img src="/RehabilitasiMangrove_KKP.gdb/Imgrehab/guludan2.png" alt="Teknik Guludan 2">
+<div class="pola-tanam-image-source">Sumber: KKP (2025)</div>
+</div>
+
+</div>
+
+<!-- SPESIFIKASI -->
+
+<div class="content-box">
+<h4>Spesifikasi Umum Teknik Guludan</h4>
+
+<div class="spesifikasi-grid">
+
+<div class="spesifikasi-item">
+<strong>Dimensi Guludan</strong>
+<ul>
+<li>Lebar ±5 meter</li>
+<li>Panjang ±10 meter</li>
+<li>Tinggi 30–50 cm</li>
+</ul>
+</div>
+
+<div class="spesifikasi-item">
+<strong>Media Tanam</strong>
+<ul>
+<li>30% tanah mineral</li>
+<li>70% lumpur</li>
+<li>Bambu diameter 8–10 cm</li>
+</ul>
+</div>
+
+<div class="spesifikasi-item">
+<strong>Kondisi Air</strong>
+<ul>
+<li>Genangan 10–20 cm</li>
+<li>Sirkulasi saluran kecil</li>
+<li>Pasang surut ≤ 1,5 m</li>
+</ul>
+</div>
+
+<div class="spesifikasi-item">
+<strong>Jarak Tanam</strong>
+<ul>
+<li>1 × 1 meter</li>
+<li>Antar guludan 2–3 meter</li>
+<li>Kedalaman 1/3 panjang bibit</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<!-- FAKTA MENARIK -->
+
+<div class="fakta-menarik-container">
+<h3 class="fakta-menarik-title">Fakta Menarik Teknik Guludan</h3>
+<div class="fakta-menarik-list">
+
+<div class="fakta-menarik-item">
+<div class="fakta-menarik-icon">🏝️</div>
+<div class="fakta-menarik-text">
+Teknik guludan disebut "pulau mini" karena area tanam lebih tinggi dari permukaan air.
+</div>
+</div>
+<div class="fakta-menarik-item">
+<div class="fakta-menarik-icon">🌱</div>
+<div class="fakta-menarik-text">
+Meniru mikro-topografi alami mangrove untuk meningkatkan pertumbuhan bibit.
+</div>
+</div>
+<div class="fakta-menarik-item">
+<div class="fakta-menarik-icon">🪵</div>
+<div class="fakta-menarik-text">
+Bambu membantu menahan sedimen dan mengurangi erosi.
+</div>
+</div>
+<div class="fakta-menarik-item">
+<div class="fakta-menarik-icon">📈</div>
+<div class="fakta-menarik-text">
+Tingkat hidup bibit lebih tinggi dibanding penanaman di genangan dalam.
+</div>
+</div>
+<div class="fakta-menarik-item">
+<div class="fakta-menarik-icon">🦀</div>
+<div class="fakta-menarik-text">
+Dapat menjadi habitat awal bagi biota kecil seperti kepiting dan organisme bentik.
+</div>
+</div>
+</div>
+</div>
+
+<!-- KELEBIHAN & KEKURANGAN -->
+
+<div class="kk-wrapper">
+
+<div class="kk-grid">
+
+<div class="kelebihan">
+<h4>Kelebihan</h4>
+<ul>
+<li>Efektif pada lahan genangan dalam</li>
+<li>Meningkatkan keberhasilan tumbuh</li>
+<li>Mengontrol pertumbuhan gulma</li>
+<li>Dapat diterapkan pada kawasan rawa</li>
+</ul>
+</div>
+
+<div class="kekurangan">
+<h4>Kekurangan</h4>
+<ul>
+<li>Biaya konstruksi lebih tinggi</li>
+<li>Pembangunan relatif kompleks</li>
+<li>Ketahanan bambu terbatas</li>
+<li>Memerlukan tambahan tanah mineral</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<div class="button-wrapper">
+<a href="teknik-rehabilitasi.html" class="back-button">Kembali</a>
+</div>
+
+</main>
+</body>
+</html>
