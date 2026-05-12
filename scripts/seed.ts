@@ -44,7 +44,7 @@ async function main() {
             },
             taxonomy: { kingdom: 'Plantae', phylum: 'Streptophyta', class: 'Equisetopsida', order: 'Malpighiales', family: 'Rhizophoraceae', genus: 'Rhizophora', species: 'Rhizophora mucronata' },
             habitat: 'Tumbuh pada tanah lumpur dalam, sering berasosiasi dengan R. apiculata. Tumbuh paling banyak di tepi laut dan di sisi sungai. Tersebar dari Afrika Timur dan Madagaskar, Asia Selatan, Asia Tenggara hingga Australia dan Pasifik.',
-            images: { daun: '/img/mangrove3.JPG', bunga: null, buah: null },
+            images: { daun: '/img/mangrove3.jpg', bunga: null, buah: null },
             category: 'mangrove sejati',
         },
         {
@@ -569,7 +569,7 @@ async function main() {
             },
             taxonomy: { kingdom: 'Plantae', phylum: 'Streptophyta', class: 'Liliopsida', order: 'Pandanales', family: 'Pandanaceae', genus: 'Pandanus', species: 'Pandanus odorifer' },
             habitat: 'Tumbuh tepi pantai, termasuk pinggiran mangrove, pantai berpasir, dan daerah berkarang tropis. Tersebar di pesisir pantai Asia Selatan dan Asia Tenggara termasuk Indonesia.',
-            images: { daun: '/img/pandanus-odorifer.JPG', bunga: null, buah: null },
+            images: { daun: '/img/pandanus-odorifer.jpg', bunga: null, buah: null },
             category: 'mangrove asosiasi',
         },
         {
@@ -689,7 +689,7 @@ async function main() {
             },
             taxonomy: { kingdom: 'Plantae', phylum: 'Streptophyta', class: 'Equisetopsida', order: 'Myrtales', family: 'Combretaceae', genus: 'Terminalia', species: 'Terminalia catappa' },
             habitat: 'Tumbuh di tepi pantai berpasir, danau, dan pinggiran mangrove. Sangat toleran terhadap lingkungan pesisir. Berasal dari Asia Tenggara dan Pasifik barat, tersebar luas di tropis termasuk seluruh Indonesia.',
-            images: { daun: '/img/mangrove4.JPG', bunga: null, buah: null },
+            images: { daun: '/img/mangrove4.jpg', bunga: null, buah: null },
             category: 'mangrove asosiasi',
         },
         {
@@ -809,14 +809,14 @@ async function main() {
     console.log('Seeding gallery items...');
     await db.delete(galleryItems);
     await db.insert(galleryItems).values([
-        { category: 'penanaman', title: 'Program Penanaman Mangrove 2023', description: 'Kegiatan penanaman mangrove di pesisir utara Jawa dengan melibatkan masyarakat lokal. Program ini bertujuan untuk mengembalikan ekosistem mangrove yang telah hilang akibat konversi lahan.', imageUrl: '/img/mangrove3.JPG' },
-        { category: 'restorasi', title: 'Restorasi Ekosistem Pesisir', description: 'Upaya restorasi kawasan pesisir yang telah mengalami degradasi melalui penanaman dan pemeliharaan mangrove secara berkelanjutan di Kalimantan Timur.', imageUrl: '/img/mangrove4.JPG' },
-        { category: 'ekosistem', title: 'Keanekaragaman Hayati Mangrove', description: 'Dokumentasi flora dan fauna yang hidup di hutan mangrove. Ekosistem ini menjadi habitat penting bagi berbagai spesies laut dan udara di Indonesia.', imageUrl: '/img/mangrove3.JPG' },
-        { category: 'komunitas', title: 'Keterlibatan Masyarakat Lokal', description: 'Partisipasi aktif kelompok masyarakat dalam program pelestarian mangrove. Mereka menjadi penggerak utama dalam menjaga keberlanjutan ekosistem.', imageUrl: '/img/mangrove4.JPG' },
-        { category: 'penanaman', title: 'Penanaman di Aceh Jaya', description: 'Program penanaman mangrove di Aceh Jaya melibatkan ribuan pohon dan komunitas lokal yang bersemangat memulihkan kawasan pantai.', imageUrl: '/img/mangrove4.JPG' },
-        { category: 'restorasi', title: 'Pemulihan Kawasan Terdegradasi', description: 'Restorasi kawasan mangrove yang telah hilang di Indramayu dengan bantuan teknologi dan partisipasi masyarakat nelayan setempat.', imageUrl: '/img/mangrove3.JPG' },
-        { category: 'ekosistem', title: 'Kehidupan di Hutan Mangrove', description: 'Berbagai spesies ikan, udang, dan kepiting bergantung pada ekosistem mangrove sebagai tempat pemijahan dan mencari makan.', imageUrl: '/img/mangrove4.JPG' },
-        { category: 'komunitas', title: 'Edukasi Lingkungan Masyarakat', description: 'Program edukasi tentang pentingnya mangrove kepada generasi muda dan masyarakat luas di wilayah pesisir Indonesia.', imageUrl: '/img/mangrove3.JPG' },
+        { category: 'penanaman', title: 'Program Penanaman Mangrove 2023', description: 'Kegiatan penanaman mangrove di pesisir utara Jawa dengan melibatkan masyarakat lokal. Program ini bertujuan untuk mengembalikan ekosistem mangrove yang telah hilang akibat konversi lahan.', imageUrl: '/img/mangrove3.jpg' },
+        { category: 'restorasi', title: 'Restorasi Ekosistem Pesisir', description: 'Upaya restorasi kawasan pesisir yang telah mengalami degradasi melalui penanaman dan pemeliharaan mangrove secara berkelanjutan di Kalimantan Timur.', imageUrl: '/img/mangrove4.jpg' },
+        { category: 'ekosistem', title: 'Keanekaragaman Hayati Mangrove', description: 'Dokumentasi flora dan fauna yang hidup di hutan mangrove. Ekosistem ini menjadi habitat penting bagi berbagai spesies laut dan udara di Indonesia.', imageUrl: '/img/mangrove3.jpg' },
+        { category: 'komunitas', title: 'Keterlibatan Masyarakat Lokal', description: 'Partisipasi aktif kelompok masyarakat dalam program pelestarian mangrove. Mereka menjadi penggerak utama dalam menjaga keberlanjutan ekosistem.', imageUrl: '/img/mangrove4.jpg' },
+        { category: 'penanaman', title: 'Penanaman di Aceh Jaya', description: 'Program penanaman mangrove di Aceh Jaya melibatkan ribuan pohon dan komunitas lokal yang bersemangat memulihkan kawasan pantai.', imageUrl: '/img/mangrove4.jpg' },
+        { category: 'restorasi', title: 'Pemulihan Kawasan Terdegradasi', description: 'Restorasi kawasan mangrove yang telah hilang di Indramayu dengan bantuan teknologi dan partisipasi masyarakat nelayan setempat.', imageUrl: '/img/mangrove3.jpg' },
+        { category: 'ekosistem', title: 'Kehidupan di Hutan Mangrove', description: 'Berbagai spesies ikan, udang, dan kepiting bergantung pada ekosistem mangrove sebagai tempat pemijahan dan mencari makan.', imageUrl: '/img/mangrove4.jpg' },
+        { category: 'komunitas', title: 'Edukasi Lingkungan Masyarakat', description: 'Program edukasi tentang pentingnya mangrove kepada generasi muda dan masyarakat luas di wilayah pesisir Indonesia.', imageUrl: '/img/mangrove3.jpg' },
     ]);
 
     // --- REGULATIONS ---
